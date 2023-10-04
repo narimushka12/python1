@@ -1,0 +1,101 @@
+1.1
+print('4 , 8 , 15 , 16 , 23 , 43 ');
+1.2
+a = '4 , 8 , 15 , 16 , 23 , 42 '
+numbers = a.split(',')
+for num in numbers:
+    print(num.strip()) 
+1.3
+user_input = input("Enter the first number: ")
+    first_number = int(user_input)
+    second_number = first_number + 1
+    third_number = first_number + 2
+    print("Consecutive Numbers:")
+    print(first_number)
+    print(second_number)
+    print(third_number)
+except ValueError:
+    print("Invalid input. Please enter a valid number.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+1.4
+a = int(input("Enter First Number:")) 
+b = int(input("Enter Second Number: ")) 
+c = int(input("Enter Third Number: ")) 
+sum = a+b+c 
+print ("The Summary is: ",sum)
+1.5
+a = int(input("edge of length:"))
+def areaCube( a ):
+    return (a * a * a)
+def surfaceCube( a ):
+    return (6 * a * a)
+print("Area =", areaCube(a))
+print("Total surface area =", surfaceCube(a))
+2.1
+    K = int(input("Enter the total number of tangerines (K): "))
+    N = int(input("Enter the number of schoolchildren (N): ")) 
+    tangerines_per_student = K // N
+    remaining_tangerines = K % N
+    print(f"Each student will get {tangerines_per_student} whole tangerine(s).")
+    print(f"{remaining_tangerines} whole tangerine(s) will remain in the basket.")
+except ValueError:
+    print("Invalid input. Please enter valid numbers for K and N.")
+except ZeroDivisionError:
+    print("The number of schoolchildren (N) cannot be zero.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+2.2
+number = int(input("Enter a four-digit number: "))
+    if 1000 <= number <= 9999:
+        thousands = number // 1000
+        hundreds = (number % 1000) // 100
+        tens = (number % 100) // 10
+        ones = number % 10
+        print(f"Thousands digit: {thousands}")
+        print(f"Hundreds digit: {hundreds}")
+        print(f"Tens digit: {tens}")
+        print(f"Ones digit: {ones}")
+    else:
+        print("The entered number is not a four-digit number.")
+
+except ValueError:
+    print("Invalid input. Please enter a valid four-digit number.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+2.3
+population = int(input("Enter the population of the universe: "))
+    survivors = (population + 1) // 2
+    print(f"Number of survivors: {survivors}")
+except ValueError:
+    print("Invalid input. Please enter a valid population number.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+2.4
+num = int(input("Enter a number: "))
+    result = num << 1
+    if result == 0:
+        print("Warning: The result is zero.")
+    else:
+        print(f"Result of left shift by 1: {result}")
+2.5
+num1 = float(input("Enter the first number: "))
+    num2 = float(input("Enter the second number: "))
+        operation = input("Choose an operation (addition, subtraction, multiplication, division): ")
+    if operation == "addition":
+        result = num1 + num2
+    elif operation == "subtraction":
+        result = num1 - num2
+    elif operation == "multiplication":
+        result = num1 * num2
+    elif operation == "division":
+        if num2 == 0:
+            print("Error: Division by zero is not allowed.")
+        else:
+            result = num1 / num2
+    else:
+        print("Invalid operation. Please choose from addition, subtraction, multiplication, or division.")
+    print(f"Result: {result}")
+
+
