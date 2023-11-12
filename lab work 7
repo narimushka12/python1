@@ -1,0 +1,111 @@
+1. 
+def display_text_file(file_path):
+    with open(file_path, 'r') as file:
+         for line in file:
+             print(line, end='')
+
+file_path = r"C:\Users\hp\Desktop\lab 7.txt"
+display_text_file(file_path)
+
+2. 
+import random
+
+def read_random_line(file_path):
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
+            print("Random Line:", random.choice(lines).strip())
+
+file_path = r"C:\Users\hp\Desktop\lab 7.txt"
+read_random_line(file_path)
+
+3. 
+def count_uppercase_characters(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read()
+        uppercase_count = sum(1 for char in content if char.isupper())
+        print(uppercase_count)
+
+file_path = r"C:\Users\hp\Desktop\lab 7.txt"
+count_uppercase_characters(file_path)
+
+4.
+def count_lines_not_starting_with_D(file_path):
+    with open(file_path, 'r') as file:
+        count = sum(1 for line in file if not line.strip().startswith('D'))
+        print(count)
+
+file_path = r"C:\Users\hp\Desktop\lab 7.txt"
+count_lines_not_starting_with_D(file_path)
+
+5.
+def count_words_ending_with_F(file_path):
+        with open(file_path, 'r') as file:
+            words = file.read().split()
+            count = sum(1 for word in words if word.endswith(('F', 'f')))
+            print(count)
+
+file_path = r"C:\Users\hp\Desktop\lab 7.txt"
+count_words_ending_with_F(file_path)
+
+6.
+def count_all_none_words(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read()
+        count_all = content.lower().split().count('all')
+        count_none = content.lower().split().count('none')
+        print(count_all)
+        print(count_none)
+
+file_path = r"C:\Users\hp\Desktop\lab 7.txt"
+count_all_none_words(file_path)
+
+7. 
+def count_word_frequency(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read().lower() 
+        words = content.split()
+        word_frequency = {}
+        
+        for word in words:
+            word_frequency[word] = word_frequency.get(word, 0) + 1
+        for word, frequency in word_frequency.items():
+            print(f"{word}: {frequency}")
+
+file_path = r"C:\Users\hp\Desktop\lab 7.txt"
+count_word_frequency(file_path)
+
+8.
+def find_longest_word(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read().lower()  
+        words = content.split()
+        longest_word = max(words, key=len)
+        
+        print(f"Самое длинное слово в файле: {longest_word}")
+
+file_path = r"C:\Users\hp\Desktop\lab 7.txt"
+find_longest_word(file_path)
+
+9. 
+def replace_characters(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read()
+        corrected_content = content.replace('B', 'J').replace('b', 'j')
+        print(corrected_content)
+
+file_path = r"C:\Users\hp\Desktop\lab 7.txt"
+replace_characters(file_path)
+
+10.
+def count_a_b_occurrences(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read().lower()  
+        count_a = content.count('a')
+        count_b = content.count('b')
+        print(f"a={count_a}, b={count_b}")
+
+file_path = r"C:\Users\hp\Desktop\lab 7.txt"
+count_a_b_occurrences(file_path)
+
+
+
