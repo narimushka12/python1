@@ -1,0 +1,230 @@
+Task 1
+
+import requests
+
+chosen_id = 1
+
+ssylka = f'https://jsonplaceholder.typicode.com/todos/{chosen_id}'
+
+todo_dict = {
+
+    "userId": 1,
+    "id": 5,
+    "title": "новый пользователь",
+    "completed": True
+
+}
+
+response = requests.put(ssylka, json=todo_dict)
+decoded_content = response.content.decode('utf-8')
+
+print(decoded_content)
+
+if response.status_code >= 400:
+    if 400 <= response.status_code <= 499:
+        print("ошибка клиента")
+    elif 500 <= response.status_code <= 599:
+        print("ошибка сервера")
+
+Task 2
+
+2.1 (2.2)
+import requests
+import random
+
+random_id = random.randint(1,826)
+
+ssylka = f"https://rickandmortyapi.com/api/character/{random_id}"
+
+response = requests.get(ssylka)
+random_data = response.json()
+
+print(random_data)
+print(random_data.keys())
+
+
+2.3
+import json
+
+random_id = random.randint(1, 826)
+ssylka = f"https://rickandmortyapi.com/api/character/{random_id}"
+
+response = requests.get(ssylka)
+random_data = response.json()
+
+file_name = f"info_character_{random_id}.json"
+
+with open(file_name, 'w') as file:
+    json.dump(random_data, file)
+
+print(f"Информация о персонаже сохранена в файле: {file_name}")
+
+import os
+file_path = os.getcwd()
+
+print(f"Файл находится: {file _path}")
+
+
+2.4
+ssylka = f'https://rickandmortyapi.com/api/episode/'
+
+episode_numbers_input = []
+for i in range(2):
+    episode_numbers = (input("номер эпизода:"))
+    episode_numbers_input.append(episode_numbers)
+
+for episode_id in episode_numbers_input:
+    url = f'{ssylka}{episode_id}'
+    response = requests.get(ssylka)
+    if response.status_code == 200:
+        print(f"ссылка эпизода {episode_id}: {url}")
+    else:
+        print("ошибка")
+
+character_id = 25
+
+url = f'https://rickandmortyapi.com/api/character/{character_id}'
+response = requests.get(url)
+
+if response.status_code == 200:
+    character_info = response.json()
+    episodes = character_info.get('episode', [])
+    episode_ssylka = []
+
+    for episode_url in episodes:
+        episode_ssylka.append(episode_url)
+
+    print(f"все эпизоды с персонажем {character_id}: {episode_ssylka}")
+else:
+    print("ошибка")
+
+2.5
+import requests
+
+ssylka = "https://rickandmortyapi.com/api/episode/1"
+
+response = requests.get(ssylka)
+
+episode_data = response.json()
+
+for key, value in episode_data.items():
+    print(f"{key}: {type(value)}")
+
+2.6
+class Episode:
+    def __init__(self, episode_data):
+        self.id = episode_data['id']
+        self.name = episode_data['name']
+        self.air_date = episode_data['air_date']
+        self.episode_code = episode_data['episode']
+        self.characters = episode_data['characters']
+        self.url = episode_data['url']
+        self.created = episode_data['created']
+
+from episode_class import Episode
+import requests
+
+def get_episode_data():
+    ssylka = "https://rickandmortyapi.com/api/episode/1"
+    response = requests.get(ssylka)
+
+    if response.status_code == 200:
+        episode_data = response.json()
+        return episode_data
+    else:
+        print("ошибка")
+        return None
+
+episode_data = get_episode_data()
+
+if episode_data:
+    episode = Episode(episode_data)
+
+    print(f"Название эпизода: {episode.name}")
+    print(f"Дата выхода: {episode.air_date}")
+    print(f"Персонажи: {episode.characters}")
+    print(f"Ссылка эпизода: {episode.url}")
+
+
+2.7
+episode_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+def get_episode_data(episode_id):
+    ssylka = f"https://rickandmortyapi.com/api/episode/{episode_id}"
+    response = requests.get(ssylka)
+
+    if response.status_code == 200:
+        return response.json()
+    else:
+        print("ошибка")
+        return None
+
+
+episodes_list = []
+
+for episode_id in episode_ids:
+    episode_data = get_episode_data(episode_id)
+
+    if episode_data:
+        episode = Episode(episode_data)
+        episodes_list.append(episode)
+        print(f"Эпизод {episode.id}: {episode.name} - Дата выхода: {episode.air_date}")
+
+2.8
+class Episode:
+    def __init__(self, name, episode_number, season):
+        self.name = name
+        self.episode_number = episode_number
+        self.season = season
+
+    def display_episode_info(self):
+        print(f"Сезон {self.season} Эпизод {self.episode_number}: {self.name}")
+
+    def formatted_info(self):
+        return f"Сезон {self.season} Эпизод {self.episode_number} - {self.name}"
+
+from task_2_8 import Episode
+
+episode1 = Episode("Азбука Бет", 9, 3)
+
+episode1.display_episode_info()
+result = episode1.formatted_info()
+print(result)
+
+
+
+2.9
+import requests
+
+ssylka = 'https://rickandmortyapi.com/api/character/3'
+
+response = requests.get(ssylka)
+
+if response.status_code == 200:
+    character_data = response.json()
+    print(character_data)
+else:
+    print("ошибка")
+
+
+2.10
+class Character:
+    def __init__(self, name, type, status, gender):
+        self.name = name
+        self.type = type
+        self.status = status
+        self.gender = gender
+
+    def display_info(self):
+        print(f"Name: {self.name}")
+        print(f"Type: {self.type}")
+        print(f"Status: {self.status}")
+        print(f"Gender: {self.gender}")
+
+from character import Character
+
+random_character = Character("Amish", "parasite", "dead", "male")
+random_character.display_info()
+result = random_character.display_info
+print(result)
