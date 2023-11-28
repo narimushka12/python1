@@ -2,6 +2,40 @@ Task 1
 
 import requests
 
+post_id = 1
+
+ssylka = f"https://jsonplaceholder.typicode.com/todos/{post_id}"
+
+response = requests.get(ssylka)
+
+if response.status_code == 404:
+    print("ошибка клиента")
+elif response.status_code == 500:
+    print("ошибка сервера")
+else:
+    print(response.json())
+
+class ToDo:
+    def __init__(self, userId, id, title, completed, name):
+        self.userId = userId
+        self.id = id
+        self.title = title
+        self.completed = completed
+        self.name = name
+
+
+post_id = 1
+
+todo_object = ToDo(1, post_id, "Это первый пост", False, "Alex")
+
+print(f"userId: {todo_object.userId}")
+print(f"id: {todo_object.id}")
+print(f"title: {todo_object.title}")
+print(f"completed: {todo_object.completed}")
+print(f"name: {todo_object.name}")
+
+import requests
+
 chosen_id = 1
 
 ssylka = f'https://jsonplaceholder.typicode.com/todos/{chosen_id}'
